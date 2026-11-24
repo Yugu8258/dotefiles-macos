@@ -17,7 +17,7 @@ export DEJA_CYCLE_FUZZY_BACK_KEY=
 export DEJA_TOGGLE_EMPTY_KEY=
 
 # syntax highlighting
-zinit light zsh-users/zsh-syntax-highlighting
+zinit light zdharma-continuum/fast-syntax-highlighting
 
 # starship theme
 eval "$(starship init zsh)"
@@ -89,9 +89,6 @@ eval "$(goenv init -)"
 
 # llvm
 export PATH=/opt/homebrew/opt/llvm/bin:$PATH
-
-# java 21
-# export PATH=/opt/homebrew/opt/openjdk@21/bin:$PATH
 
 # jenv
 export PATH="$HOME/.jenv/bin:$PATH"
