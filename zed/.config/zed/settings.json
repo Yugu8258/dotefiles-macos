@@ -1,0 +1,99 @@
+// Zed editor settings
+// Documentation: https://zed.dev/docs/configuring-zed
+// Open default settings palette: cmd-shift-p -> zed: open default settings
+{
+    // Open CLI files in the existing window instead of creating new windows
+    "cli_default_open_behavior": "existing_window",
+    // Icon theme for the project panel and UI icons
+    "icon_theme": "Catppuccin Macchiato Monochrome",
+    // What to restore when Zed launches: launchpad view (empty workspace)
+    "restore_on_startup": "launchpad",
+    // Enable Vim modal editing mode
+    "vim_mode": true,
+    // Show relative line numbers in gutter
+    "relative_line_numbers": "enabled",
+    "gutter": {
+        // Show line numbers in the gutter
+        "line_numbers": true,
+    },
+    // Font family for UI elements (panels, menus, status bar)
+    "ui_font_family": "JetBrainsMonoNL Nerd Font",
+    // Font family for code editor buffer
+    "buffer_font_family": "JetBrainsMono Nerd Font Propo",
+    "terminal": {
+        // Font family for built-in terminal
+        "font_family": "JetBrains Maple Mono",
+        // Font size for built-in terminal
+        "font_size": 12,
+    },
+    // Enable vertical wrap guide rulers
+    "show_wrap_guides": true,
+    // Column positions for vertical ruler lines
+    "wrap_guides": [120],
+    "project_panel": {
+        // Dock project panel to the right side
+        "dock": "right",
+        // Do not automatically collapse directories
+        "auto_fold_dirs": false,
+        // Auto reveal current file in project tree
+        "auto_reveal_entries": true,
+        // Hide files matched by .gitignore in project panel
+        "hide_gitignore": true,
+        // Show git modified status markers in project panel
+        "git_status": true,
+        // Keep directory headers sticky when scrolling
+        "sticky_scroll": true,
+    },
+    // Editor cursor shape: block (solid square)
+    "cursor_shape": "block",
+    // Base keymap preset: JetBrains IDE style bindings
+    "base_keymap": "JetBrains",
+    // Font size for UI elements
+    "ui_font_size": 14,
+    // Font size for code buffer
+    "buffer_font_size": 12,
+    "theme": {
+        // Follow system dark/light mode
+        "mode": "system",
+        // Light theme when system is light
+        "light": "Ayu Light",
+        // Dark theme when system is dark
+        "dark": "Ayu Dark",
+    },
+    "autosave": {
+        // Auto save after idle delay (milliseconds)
+        "after_delay": {
+            "milliseconds": 1000,
+        },
+    },
+    // Run configured formatter automatically on file save
+    "format_on_save": "on",
+    // Number of spaces per tab
+    "tab_size": 4,
+    // Use spaces instead of hard tab characters
+    "hard_tabs": false,
+    "lsp": {
+        "jdtls": {
+            "settings": {
+                // Allow jdtls to auto download required JDK
+                "jdk_auto_download": true,
+            },
+        },
+    },
+    // Minimap (document overview on the right side)
+    "minimap": {
+        "show": "always",
+        "display_in": "active_editor",
+        "max_width_columns": 60,
+        "thumb": "always",
+        "thumb_border": "left_open",
+        "current_line_highlight": "line",
+    },
+    // Disable all built-in AI features (agent, inline assist, edit predictions)
+    "disable_ai": true,
+    // Disable client telemetry: usage metrics + crash diagnostics
+    "telemetry": {
+        "diagnostics": false,
+        "metrics": false,
+    },
+}
