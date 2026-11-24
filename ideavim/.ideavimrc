@@ -1,0 +1,77 @@
+" ==============================================================================
+" IdeaVim 配置文件 .ideavimrc
+" IdeaVim 插件使用，语法和原生 .vimrc 基本一致
+" 官方文档：https://jb.gg/h38q75
+" 示例分享：https://jb.gg/share-ideavimrc
+" ==============================================================================
+
+" 加载外部 vim 配置，复用 ~/.vimrc 里的通用 vim 设置
+source ~/.vimrc
+
+" -------------------------- 基础选项设置 --------------------------
+" 光标上下保留 5 行上下文，避免贴顶贴底
+set scrolloff=5
+
+" 增量搜索，输入时实时高亮匹配项
+set incsearch
+
+" 禁用 Ex 模式，将 Q 映射为格式化（gq）
+map Q gq
+
+" 行号：绝对行号 + 相对行号
+set number relativenumber
+
+" 重构模式：保持光标位置不变
+set idearefactormode=keep
+
+" 开启 ideajoin，支持 J 连接行（IdeaVim 专属）
+set ideajoin
+
+" 设置 leader 键为空格
+let mapleader = " "
+
+" -------------------------- 插件启用与配置 --------------------------
+" 启用插件系统，加载所需 vim 插件（IdeaVim 插件）
+" 复制文本后高亮提示
+Plug 'machakann/vim-highlightedyank'
+" 快速注释插件 gc/gcc
+Plug 'tpope/vim-commentary'
+
+" 启用 surround 插件，快速增删改括号引号 ys/ds/cs
+set surround
+
+" 启用 NERDTree 文件树
+set NERDTree
+" NERDTree：l 打开节点
+let g:NERDTreeMapActivateNode='l'
+" NERDTree：h 回到父目录
+let g:NERDTreeMapParent='h'
+
+" -------------------------- 快捷键映射 --------------------------
+" toggler 插件
+map <leader>i :action ToggleAction<CR>
+# map <leader>i :action ToggleActionReverse<CR>
+
+" 禁用 ESC 映射（不建议这样设置，会导致无法正常退出插入模式，谨慎使用）
+noremap <Esc> <nop>
+
+" 普通模式：Shift+回车 在上方新开一行并回到普通模式
+nmap <S-Enter> O<Esc>
+" 普通模式：回车 在下方新开一行并回到普通模式
+nmap <CR> o<Esc>
+
+" 普通模式 Ctrl-j / Ctrl-k 上下移动当前行
+nnoremap <C-j> :m +1<CR>
+nnoremap <C-k> :m -2<CR>
+
+" 插入模式 Ctrl-j / Ctrl-k 移动行，移动完成后切回插入模式
+inoremap <C-j> <Esc>:m +1<CR>gi
+inoremap <C-k> <Esc>:m -2<CR>gi
+
+" -------------------------- IDEA 原生动作映射（注释示例） --------------------------
+" \r 格式化代码
+" map \r <Action>(ReformatCode)
+" <leader>d 启动调试
+" map <leader>d <Action>(Debug)
+" \b 切换断点
+" map \b <Action>(ToggleLineBreakpoint)
