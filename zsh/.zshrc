@@ -6,7 +6,7 @@ typeset -U PATH
 source /opt/homebrew/opt/zinit/zinit.zsh
 
 # super smart autocompletions
-zinit ice wait"0" lucid depth=1 pick"deja.plugin.zsh"
+zinit ice wait lucid depth=1 pick"deja.plugin.zsh"
 zinit light Giammarco-Ferranti/deja
 
 # deja overrides
