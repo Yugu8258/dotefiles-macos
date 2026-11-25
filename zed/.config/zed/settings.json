@@ -1,97 +1,163 @@
-// Zed editor settings
-// Documentation: https://zed.dev/docs/configuring-zed
-// Open default settings palette: cmd-shift-p -> zed: open default settings
+// ============================================================================
+// Zed Editor Settings
+// 文档说明: https://zed.dev/docs/configuring-zed
+// 查看默认配置: 命令面板 (Cmd/Ctrl + Shift + P) -> zed: open default settings
+// ============================================================================
 {
-    // Open CLI files in the existing window instead of creating new windows
-    "cli_default_open_behavior": "existing_window",
-    // Icon theme for the project panel and UI icons
-    "icon_theme": "Catppuccin Macchiato Monochrome",
-    // What to restore when Zed launches: launchpad view (empty workspace)
+    // ------------------------------------------------------------------------
+    // 1. 启动与窗口行为 (Startup & Window)
+    // ------------------------------------------------------------------------
+    // 启动时恢复状态：launchpad 表示显示空白启动页，不自动恢复上次工作区
     "restore_on_startup": "launchpad",
-    // Enable Vim modal editing mode
-    "vim_mode": true,
-    // Show relative line numbers in gutter
-    "relative_line_numbers": "enabled",
-    "gutter": {
-        // Show line numbers in the gutter
-        "line_numbers": true,
-    },
-    // Font family for UI elements (panels, menus, status bar)
-    "ui_font_family": "JetBrainsMonoNL Nerd Font",
-    // Font family for code editor buffer
-    "buffer_font_family": "JetBrainsMono Nerd Font Propo",
-    "terminal": {
-        // Font family for built-in terminal
-        "font_family": "JetBrains Maple Mono",
-        // Font size for built-in terminal
-        "font_size": 12,
-    },
-    // Enable vertical wrap guide rulers
-    "show_wrap_guides": true,
-    // Column positions for vertical ruler lines
-    "wrap_guides": [120],
-    "project_panel": {
-        // Dock project panel to the right side
-        "dock": "right",
-        // Do not automatically collapse directories
-        "auto_fold_dirs": false,
-        // Auto reveal current file in project tree
-        "auto_reveal_entries": true,
-        // Hide files matched by .gitignore in project panel
-        "hide_gitignore": true,
-        // Show git modified status markers in project panel
-        "git_status": true,
-        // Keep directory headers sticky when scrolling
-        "sticky_scroll": true,
-    },
-    // Editor cursor shape: block (solid square)
-    "cursor_shape": "block",
-    // Base keymap preset: JetBrains IDE style bindings
-    "base_keymap": "JetBrains",
-    // Font size for UI elements
-    "ui_font_size": 14,
-    // Font size for code buffer
-    "buffer_font_size": 12,
+    // 从命令行打开文件时复用现有窗口，而不是每次新建窗口
+    "cli_default_open_behavior": "existing_window",
+
+    // ------------------------------------------------------------------------
+    // 2. 主题与背景配色 (Theme & Appearance)
+    // ------------------------------------------------------------------------
     "theme": {
-        // Follow system dark/light mode
+        // 跟随系统浅色/深色模式自动切换
         "mode": "system",
-        // Light theme when system is light
+        // 系统处于浅色模式时使用的主题
         "light": "Ayu Light",
-        // Dark theme when system is dark
+        // 系统处于深色模式时使用的主题
         "dark": "Ayu Dark",
     },
+    // 针对特定主题覆写局部颜色槽位
+    "theme_overrides": {
+        "Ayu Dark": {
+            // 主代码编辑区背景色
+            "editor.background": "#212836",
+            // 行号栏（gutter）背景色
+            "editor.gutter.background": "#1f2430",
+            // 当前光标所在行号的高亮色
+            "editor.active_line_number": "#ffcc66",
+            // 侧边面板背景色
+            "panel.background": "#1f2430",
+            // 顶部文件标签栏背景色
+            "tab_bar.background": "#1f2430",
+            // 顶部工具栏/面包屑栏背景色
+            "toolbar.background": "#1f2430",
+            // 底部状态栏背景色
+            "status_bar.background": "#1f2430",
+            // 窗口标题栏背景色
+            "title_bar.background": "#1f2430",
+            // 终端背景颜色
+            "terminal.background": "#171b24",
+        },
+    },
+    // 文件与侧边面板图标主题
+    "icon_theme": "Catppuccin Macchiato Monochrome",
+
+    // ------------------------------------------------------------------------
+    // 3. 字体与字号 (Fonts & Sizing)
+    // ------------------------------------------------------------------------
+    // 界面 UI 字体（菜单、面板、状态栏等）
+    "ui_font_family": "JetBrainsMonoNL Nerd Font",
+    // 界面 UI 字号
+    "ui_font_size": 14,
+    // 代码编辑区字体
+    "buffer_font_family": "JetBrainsMono Nerd Font Propo",
+    // 代码编辑区字号
+    "buffer_font_size": 12,
+    // 内置终端字体与字号
+    "terminal": {
+        "font_family": "JetBrains Maple Mono",
+        "font_size": 12,
+    },
+
+    // ------------------------------------------------------------------------
+    // 4. 编辑体验与自动保存 (Editing & Save)
+    // ------------------------------------------------------------------------
+    // 启用 Vim 键位模式
+    "vim_mode": true,
+    // 光标形状：block 为实心方块光标
+    "cursor_shape": "block",
+    // 单个 Tab 占用的空格数
+    "tab_size": 4,
+    // 使用空格代替制表符（\t）
+    "hard_tabs": false,
+    // 显示垂直参考线（换行标尺）
+    "show_wrap_guides": true,
+    // 垂直参考线所在的列数位置
+    "wrap_guides": [120],
+    // 保存文件时自动运行已配置的格式化器
+    "format_on_save": "on",
+    // 停止输入延迟指定毫秒后自动保存
     "autosave": {
-        // Auto save after idle delay (milliseconds)
         "after_delay": {
             "milliseconds": 1000,
         },
     },
-    // Run configured formatter automatically on file save
-    "format_on_save": "on",
-    // Number of spaces per tab
-    "tab_size": 4,
-    // Use spaces instead of hard tab characters
-    "hard_tabs": false,
+
+    // ------------------------------------------------------------------------
+    // 5. 界面元素与面板布局 (Panels, Gutter, Tabs & Minimap)
+    // ------------------------------------------------------------------------
+    // 左侧/侧边行号槽设置
+    "gutter": {
+        // 显示行号
+        "line_numbers": true,
+    },
+    // 相对行号设置（配合 Vim 跳转更直观）
+    "relative_line_numbers": "enabled",
+    // 顶部已打开文件标签栏设置
+    "tab_bar": {
+        // 隐藏顶部文件标签栏（改回 true 可重新显示）
+        "show": false,
+    },
+    // 项目文件树面板（Project Panel）设置
+    "project_panel": {
+        // 将文件树停靠在右侧
+        "dock": "left",
+        // 不自动折叠目录层级
+        "auto_fold_dirs": false,
+        // 切换文件时自动在文件树中定位并展开对应条目
+        "auto_reveal_entries": true,
+        // 隐藏被 .gitignore 忽略的文件与目录
+        "hide_gitignore": true,
+        // 显示 Git 修改状态标记
+        "git_status": true,
+        // 滚动目录时保持父级目录标题吸顶
+        "sticky_scroll": true,
+    },
+    // 右侧代码缩略图（Minimap）设置
+    "minimap": {
+        // 始终显示缩略图
+        "show": "always",
+        // 仅在当前激活的编辑器中显示
+        "display_in": "active_editor",
+        // 缩略图最大列宽
+        "max_width_columns": 60,
+        // 始终显示视口滑块（thumb）
+        "thumb": "always",
+        // 滑块边框样式
+        "thumb_border": "left_open",
+        // 高亮当前所在行
+        "current_line_highlight": "line",
+    },
+
+    // ------------------------------------------------------------------------
+    // 6. 快捷键预设与语言服务 (Keymap & LSP)
+    // ------------------------------------------------------------------------
+    // 基础键位映射预设：JetBrains 风格
+    "base_keymap": "JetBrains",
+    // 语言服务器（LSP）专项配置
     "lsp": {
+        // Java 语言服务器（jdtls）配置
         "jdtls": {
             "settings": {
-                // Allow jdtls to auto download required JDK
+                // 允许自动下载所需的 JDK
                 "jdk_auto_download": true,
             },
         },
     },
-    // Minimap (document overview on the right side)
-    "minimap": {
-        "show": "always",
-        "display_in": "active_editor",
-        "max_width_columns": 60,
-        "thumb": "always",
-        "thumb_border": "left_open",
-        "current_line_highlight": "line",
-    },
-    // Disable all built-in AI features (agent, inline assist, edit predictions)
+
+    // ------------------------------------------------------------------------
+    // 7. 隐私与遥测 (AI & Telemetry)
+    // ------------------------------------------------------------------------
+    // 禁用内置 AI 功能（Agent、行内辅助、代码预测等）
     "disable_ai": true,
-    // Disable client telemetry: usage metrics + crash diagnostics
+    // 禁用遥测统计与崩溃诊断上报
     "telemetry": {
         "diagnostics": false,
         "metrics": false,
