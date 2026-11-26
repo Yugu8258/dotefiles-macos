@@ -13,7 +13,54 @@ vim.pack.add {
     'https://github.com/akinsho/toggleterm.nvim',
     'https://github.com/lukas-reineke/virt-column.nvim',
     'https://github.com/rmagatti/alternate-toggler',
+    'https://github.com/HiPhish/rainbow-delimiters.nvim',
 }
+
+-- Set rainbow delimiter highlight groups before plugin initialization
+vim.g.rainbow_delimiters = {
+    highlight = {
+        'RainbowDelimiterRed',
+        'RainbowDelimiterYellow',
+        'RainbowDelimiterBlue',
+        'RainbowDelimiterOrange',
+        'RainbowDelimiterGreen',
+        'RainbowDelimiterViolet',
+        'RainbowDelimiterCyan',
+    },
+}
+
+local function apply_rainbow_delimiters_hl()
+    local palette = {
+        love = '#eb6f92',
+        gold = '#f6c177',
+        pine = '#3e8fb0',
+        rose = '#ea9a97',
+        leaf = '#95b1ac',
+        iris = '#c4a7e7',
+        foam = '#9ccfd8',
+    }
+
+    vim.api.nvim_set_hl(0, 'RainbowDelimiterRed', { fg = palette.love })
+    vim.api.nvim_set_hl(0, 'RainbowDelimiterYellow', { fg = palette.gold })
+    vim.api.nvim_set_hl(0, 'RainbowDelimiterBlue', { fg = palette.pine })
+    vim.api.nvim_set_hl(0, 'RainbowDelimiterOrange', { fg = palette.rose })
+    vim.api.nvim_set_hl(0, 'RainbowDelimiterGreen', { fg = palette.leaf })
+    vim.api.nvim_set_hl(0, 'RainbowDelimiterViolet', { fg = palette.iris })
+    vim.api.nvim_set_hl(0, 'RainbowDelimiterCyan', { fg = palette.foam })
+end
+
+local rainbow_group = vim.api.nvim_create_augroup('user-rainbow-delimiters', { clear = true })
+vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufNewFile' }, {
+    desc = 'Apply rainbow delimiter highlights when opening a buffer',
+    group = rainbow_group,
+    once = true,
+    callback = apply_rainbow_delimiters_hl,
+})
+vim.api.nvim_create_autocmd('ColorScheme', {
+    desc = 'Re-apply rainbow delimiter highlights after colorscheme changes',
+    group = rainbow_group,
+    callback = apply_rainbow_delimiters_hl,
+})
 
 -- Load snacks early with only the indent module enabled. See `:help snacks-indent`
 local ok_snacks, snacks = pcall(require, 'snacks')
