@@ -1,6 +1,6 @@
 -- ~/.config/nvim/lua/neovide.lua
 if not vim.g.neovide then
-  return
+    return
 end
 
 -- 1. Font family and size (JetBrains Mono Nerd Font, 14pt)
@@ -14,16 +14,16 @@ vim.g.neovide_opacity = 1.0
 vim.g.neovide_normal_opacity = 1.0
 
 local function apply_bg()
-  vim.api.nvim_set_hl(0, "Normal", { bg = "#212836" })
-  vim.api.nvim_set_hl(0, "NormalNC", { bg = "#212836" })
+    vim.api.nvim_set_hl(0, "Normal", { bg = "#212836" })
+    vim.api.nvim_set_hl(0, "NormalNC", { bg = "#212836" })
 end
 
 apply_bg()
 
 -- Re-apply custom background color after any colorscheme change
 vim.api.nvim_create_autocmd("ColorScheme", {
-  group = vim.api.nvim_create_augroup("NeovideCustomBg", { clear = true }),
-  callback = apply_bg,
+    group = vim.api.nvim_create_augroup("NeovideCustomBg", { clear = true }),
+    callback = apply_bg,
 })
 
 -- 4. Window state
