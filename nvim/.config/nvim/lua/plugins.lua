@@ -40,9 +40,19 @@ vim.api.nvim_create_autocmd('FileType', {
 require('ayu').setup {
   mirage = true,
   overrides = {
-    Normal = { bg = "None" },
-    NormalFloat = { bg = "None" },
+    Normal = { bg = vim.g.neovide and "#212836" or "None" },
+    NormalFloat = { bg = vim.g.neovide and "#212836" or "None" },
     SignColumn = { bg = "None" },
+
+    -- Current line number (Ayu Mirage warm orange)
+    CursorLineNr = { fg = "#FFA759", bg = "None", bold = true },
+    -- Relative line numbers above and below cursor
+    LineNrAbove = { fg = "#5C6773", bg = "None" },
+    LineNrBelow = { fg = "#5C6773", bg = "None" },
+    -- Fallback standard line number
+    LineNr = { fg = "#707A8C", bg = "None" },
+    -- Subtle cursorline background
+    CursorLine = { bg = "#283040" },
   },
 }
 vim.cmd.colorscheme 'ayu'

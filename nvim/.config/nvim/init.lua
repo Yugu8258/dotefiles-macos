@@ -3,6 +3,10 @@ require 'settings'
 require 'plugins'
 require 'snippets'
 
+if vim.g.neovide then
+  require 'neovide'
+end
+
 vim.lsp.enable({
   'clangd',
   'gopls',
