@@ -6,8 +6,13 @@ return {
     settings = {
         Lua = {
             runtime = { version = 'LuaJIT' },
-            -- Make the server aware of Neovim's runtime files, so `vim.*` is known
-            workspace = { library = { vim.env.VIMRUNTIME }, checkThirdParty = false },
+            format = {
+                enable = true,
+            },
+            workspace = {
+                library = vim.api.nvim_get_runtime_file("", true),
+                checkThirdParty = false,
+            },
         },
     },
 }
